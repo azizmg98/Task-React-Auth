@@ -1,5 +1,6 @@
 import { Button, InputGroup, FormControl, Modal } from 'react-bootstrap';
 import { useState } from 'react';
+import authStore from '../stores/authStore'
 
 function SignupModal() {
   const [show, setShow] = useState(false);
@@ -13,6 +14,7 @@ function SignupModal() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    authStore.signup(user)
     handleClose();
   };
 
@@ -40,6 +42,15 @@ function SignupModal() {
                 type="password"
                 onChange={handleChange}
                 placeholder="Password"
+              />
+            </InputGroup>
+            <InputGroup className="mb-3">
+              <InputGroup.Text>email</InputGroup.Text>
+              <FormControl
+                name="email"
+                type="email"
+                onChange={handleChange}
+                placeholder="email"
               />
             </InputGroup>
             <Button variant="outline-dark" type="submit">
